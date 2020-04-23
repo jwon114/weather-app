@@ -1,26 +1,37 @@
 import React from 'react';
 import logo from '../logo.svg';
-import './WeatherApp.css';
+import axios from 'axios';
+import Header from './Header';
 
-const WeatherApp = () => {
-  return (
-    <div className="WeatherApp">
-      <header className="WeatherApp-header">
-        <img src={logo} className="WeatherApp-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="WeatherApp-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class WeatherApp extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.state = {
+
+    // };
+  }
+
+  componentDidMount() {
+    // const API_KEY = '6c8ca7a74ad9d3301728396fc82b6227'
+
+    // axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric&APPID=${API_KEY}`)
+    // .then(res => {
+    //   console.log(res);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
+  }
+  
+  render() {
+    return (
+      <div className="WeatherApp">
+        <Header 
+          location='london'
+          currentTime={Date.now()}
+          temperature='24'
+        />
+      </div>
+    );
+  }
 }
-
-export default WeatherApp;
