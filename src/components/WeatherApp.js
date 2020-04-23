@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import './WeatherApp.css';
 
-function App() {
+const WeatherApp = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="WeatherApp">
+      <header className="WeatherApp-header">
+        <img src={logo} className="WeatherApp-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
-          className="App-link"
+          className="WeatherApp-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
@@ -23,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default WeatherApp;
