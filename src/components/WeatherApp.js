@@ -7,10 +7,11 @@ import ProgressBar from './ProgressBar';
 export default class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
+    const dateTimeNow = new Date();
     this.state = {
-      currentTime: undefined,
+      currentTime: `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`,
       location: 'london',
-      startTimer: false
+      startTimer: true
     };
   }
 
@@ -24,15 +25,20 @@ export default class WeatherApp extends React.Component {
     // .catch(err => {
     //   console.log(err);
     // })
-    const dateTimeNow = new Date();
-    this.setState(() => ({
-      currentTime: `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`
-    }));
+    // const dateTimeNow = new Date();
+    // this.setState(() => ({
+    //   currentTime: `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`
+    // }));
   }
 
-  handleTimerFinish() {
+  handleTimerFinish = () => {
+    // stop timer
+    this.setState(() => ({ startTimer: false }));
 
+    // reset start timer again
   }
+
+
   
   render() {
     const { currentTime, location, startTimer } = this.state;
@@ -45,7 +51,8 @@ export default class WeatherApp extends React.Component {
           temperature='24'
         />
         <ProgressBar
-          startTimer={startTimer}
+          startTimer={true}
+          secondsCountdown={5}
           handleTimerFinished={this.handleTimerFinish}
         />
       </div>
