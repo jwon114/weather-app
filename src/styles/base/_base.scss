@@ -3,8 +3,9 @@ html {
 }
 
 body {
-  background: $dark-blue;
+  background: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
+  color: $white;
 }
 
 button {
@@ -13,4 +14,16 @@ button {
 
 button:disabled {
   cursor: default;
+}
+
+.gold {
+  background-color: $gold;
+}
+
+.tan {
+  background-color: $tan;
+}
+
+.brown {
+  background-color: $brown;
 }

@@ -2,13 +2,16 @@ import React from 'react';
 import logo from '../logo.svg';
 import axios from 'axios';
 import Header from './Header';
+import ProgressBar from './ProgressBar';
 
 export default class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-
-    // };
+    this.state = {
+      currentTime: undefined,
+      location: 'london',
+      startTimer: false
+    };
   }
 
   componentDidMount() {
@@ -21,15 +24,29 @@ export default class WeatherApp extends React.Component {
     // .catch(err => {
     //   console.log(err);
     // })
+    const dateTimeNow = new Date();
+    this.setState(() => ({
+      currentTime: `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`
+    }));
+  }
+
+  handleTimerFinish() {
+
   }
   
   render() {
+    const { currentTime, location, startTimer } = this.state;
+
     return (
       <div className="WeatherApp">
         <Header 
-          location='london'
-          currentTime={Date.now()}
+          location={location}
+          time={currentTime}
           temperature='24'
+        />
+        <ProgressBar
+          startTimer={startTimer}
+          handleTimerFinished={this.handleTimerFinish}
         />
       </div>
     );

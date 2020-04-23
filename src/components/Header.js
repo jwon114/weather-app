@@ -2,14 +2,18 @@ import React from 'react';
 
 const Header = (props) => (
   <div className="header">
-    <h2 className="header__location">{props.location}</h2>
-    <div>{props.currentTime}</div>
-<h2 className="header__temperature">{props.temperature}</h2>
+    <div className="header__location">{props.location}</div>
+    <div className="header__time">
+      <span className="header__dot brown"></span>
+      <span className="header__dot tan"></span>
+      <span className="header__dot gold"></span>
+      <span className="header__time_value">{props.time}</span>
+      <span className="header__dot brown"></span>
+      <span className="header__dot tan"></span>
+      <span className="header__dot gold"></span>
+    </div>
+    <div className="header__temperature">{props.temperature}</div>
   </div>
 );
-
-Header.defaultProps = {
-  location: 'london'
-};
 
 export default Header;
