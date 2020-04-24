@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ProgressBar extends React.Component {
   constructor(props) {
@@ -25,15 +26,21 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
-    const percentage = 100 - ((this.state.timer / this.props.secondsCountdown) * 100)
+    const percentageWidth = 100 - ((this.state.timer / this.props.secondsCountdown) * 100)
 
     return (
       <div className="progress-bar">
         <div className="progress-bar__text">{`Reloading in ${this.state.timer}s`}</div>
         <div className="progress-bar__container">
-          <div className="progress-bar__filler" style={{ width: `${percentage}%`}}></div>
+          <div className="progress-bar__filler" style={{ width: `${percentageWidth}%`}}></div>
         </div>
       </div>
     );
   }
+}
+
+ProgressBar.propTypes = {
+  startTimer: PropTypes.bool,
+  secondsCountdown: PropTypes.number,
+  handleTimerFinished: PropTypes.func
 }

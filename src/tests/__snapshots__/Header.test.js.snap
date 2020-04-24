@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<div
+  className="header"
+>
+  <div
+    className="header__location"
+  />
+  <div
+    className="header__time"
+  >
+    <span
+      className="header__dot brown"
+    />
+    <span
+      className="header__dot tan"
+    />
+    <span
+      className="header__dot gold"
+    />
+    <span
+      className="header__time_value"
+    />
+    <span
+      className="header__dot brown"
+    />
+    <span
+      className="header__dot tan"
+    />
+    <span
+      className="header__dot gold"
+    />
+  </div>
+  <div
+    className="header__temperature"
+  />
+</div>
+`;
