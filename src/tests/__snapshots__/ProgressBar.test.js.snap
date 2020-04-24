@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ProgressBar correctly 1`] = `
+<div
+  className="progress-bar"
+>
+  <div
+    className="progress-bar__text"
+  >
+    Reloading in undefineds
+  </div>
+  <div
+    className="progress-bar__container"
+  >
+    <div
+      className="progress-bar__filler"
+      style={
+        Object {
+          "width": "NaN%",
+        }
+      }
+    />
+  </div>
+</div>
+`;

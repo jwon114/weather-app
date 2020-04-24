@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render WeatherApp correctly 1`] = `
+<div
+  className="WeatherApp"
+>
+  <Header
+    location="london"
+    temperature="24"
+    time="16:35 GMT"
+  />
+  <ProgressBar
+    handleTimerFinished={[Function]}
+    secondsCountdown={5}
+    startTimer={true}
+  />
+</div>
+`;
