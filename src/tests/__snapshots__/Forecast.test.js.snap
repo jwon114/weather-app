@@ -4,6 +4,7 @@ exports[`should render Forecast correctly 1`] = `
 <div
   className="forecast"
 >
+  <Day />
   <div>
     MON
   </div>

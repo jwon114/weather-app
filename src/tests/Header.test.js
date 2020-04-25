@@ -6,6 +6,7 @@ import Header from '../components/Header';
 test('should render Header correctly', () => {
   const renderer = new ReactShallowRenderer();
   renderer.render(<Header />);
+  
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
@@ -15,7 +16,11 @@ test('renders location, time and temperature', () => {
     time={'10:24 GMT'}
     temperature={'24'} />)
 
-  expect(getByText(/london/i)).toBeInTheDocument();
-  expect(getByText('10:24 GMT')).toBeInTheDocument();
-  expect(getByText('24')).toBeInTheDocument();
+  const locationElement = getByText(/london/i);
+  const timeElement = getByText('10:24 GMT');
+  const temperatureElement = getByText('24');
+
+  expect(locationElement).toBeInTheDocument();
+  expect(timeElement).toBeInTheDocument();
+  expect(temperatureElement).toBeInTheDocument();
 });

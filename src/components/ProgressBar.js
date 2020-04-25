@@ -20,7 +20,7 @@ export default class ProgressBar extends React.Component {
       clearInterval(this.timerId);
       this.props.handleTimerFinished();
     } else {
-      this.setState((prevState) => ({ timer: prevState.timer - 1 }))
+      this.setState((prevState) => ({ timer: prevState.timer - 1 }));
     }
   }
 
@@ -29,7 +29,7 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
-    const percentageWidth = 100 - ((this.state.timer / this.props.initialCountdown) * 100)
+    const percentageWidth = 100 - ((this.state.timer / this.props.initialCountdown) * 100);
 
     return (
       <div className="progress-bar">

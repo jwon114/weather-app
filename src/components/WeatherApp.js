@@ -3,15 +3,50 @@ import logo from '../logo.svg';
 import axios from 'axios';
 import Header from './Header';
 import ProgressBar from './ProgressBar';
+import FiveDayForecast from './FiveDayForecast';
 
 export default class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: this.getCurrentTime(),
-      location: 'london',
+      current: {
+        time: this.getCurrentTime(),
+        location: 'london',
+        temperature: '24'
+      },
       startTimer: true,
-      currentTemperature: '24'
+      weatherData: [
+        {
+          day: 'Mon',
+          temperature: '12',
+          iconCode: '01n',
+          forecast: 'Cloudy'
+        }, 
+        {
+          day: 'Tue',
+          temperature: '10',
+          iconCode: '01n',
+          forecast: 'A bt windy'
+        },
+        {
+          day: 'Wed',
+          temperature: '13',
+          iconCode: '01n',
+          forecast: 'Can\'t see very far'
+        },
+        {
+          day: 'Thu',
+          temperature: '10',
+          iconCode: '01n',
+          forecast: 'A bit windy'
+        },
+        {
+          day: 'Fri',
+          temperature: '13',
+          iconCode: '01n',
+          forecast: 'Can\'t see very far'
+        }
+      ]
     };
   }
 
@@ -50,19 +85,22 @@ export default class WeatherApp extends React.Component {
 
   
   render() {
-    const { currentTime, location, startTimer, currentTemperature } = this.state;
+    const { current: { time, location, temperature }, startTimer, weatherData } = this.state;
 
     return (
       <div className="WeatherApp">
         <Header 
           location={location}
-          time={currentTime}
-          temperature={currentTemperature}
+          time={time}
+          temperature={temperature}
         />
         <ProgressBar
           startTimer={startTimer}
           initialCountdown={5}
           handleTimerFinished={this.handleTimerFinish}
+        />
+        <FiveDayForecast 
+          data={weatherData}
         />
       </div>
     );

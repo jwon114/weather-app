@@ -7,6 +7,7 @@ import ProgressBar from '../components/ProgressBar';
 test('should render ProgressBar correctly', () => {
   const renderer = new ReactShallowRenderer();
   renderer.render(<ProgressBar />);
+  
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
@@ -27,6 +28,7 @@ test('sets ProgressBar timer state to 0 when 60 second timer finishes', () => {
     handleTimerFinished={() => {}} />);
 
   const app = renderer.getInstance();
+  
   expect(app.state.timer).toEqual(60);
   expect(setInterval).toHaveBeenCalled();
   expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);  
