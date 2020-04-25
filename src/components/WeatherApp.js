@@ -40,6 +40,7 @@ export default class WeatherApp extends React.Component {
   }
 
   handleTimerFinish = () => {
+    console.log('timer finished')
     // stop timer
     this.setState(() => ({ startTimer: false }));
 
@@ -60,7 +61,7 @@ export default class WeatherApp extends React.Component {
         />
         <ProgressBar
           startTimer={startTimer}
-          secondsCountdown={5}
+          initialCountdown={5}
           handleTimerFinished={this.handleTimerFinish}
         />
       </div>
