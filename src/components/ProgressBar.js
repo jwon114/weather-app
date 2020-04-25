@@ -33,7 +33,7 @@ export default class ProgressBar extends React.Component {
 
     return (
       <div className="progress-bar">
-        <div className="progress-bar__text">{`Reloading in ${this.state.timer}s`}</div>
+        <span className="progress-bar__text">{`Reloading in ${this.state.timer}s`}</span>
         <div className="progress-bar__container">
           <div className="progress-bar__filler" style={{ width: `${percentageWidth}%`}}></div>
         </div>

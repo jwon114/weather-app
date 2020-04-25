@@ -2,7 +2,7 @@
   background-color: $grey;
   border: 1px solid $grey;
   border-radius: 5px;
-  padding: 5px;
+  padding: 5px 10px;
   display: flex;
   justify-content: space-between;
   height: 80px;
@@ -13,14 +13,14 @@
   display: flex;
   width: 40%;
   text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
 }
 
 .daily-forecast__day,
 .daily-forecast__temperature {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
+  text-align: center;
 }
 
 .daily-forecast__day {

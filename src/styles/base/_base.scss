@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background: $black;
+  background: #FFFFFF;
   font-family: Helvetica, Arial, sans-serif;
   color: $white;
   margin: 0;
@@ -15,6 +15,12 @@ button {
 
 button:disabled {
   cursor: default;
+}
+
+.WeatherApp {
+  width: 360px;
+  margin: 20px auto;
+  background-color: $black;
 }
 
 .gold {

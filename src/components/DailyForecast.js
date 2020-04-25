@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 const DailyForecast = (props) => (
   <div className="daily-forecast">
     <div className="daily-forecast__day-container">
-      <div className="daily-forecast__day">{props.day}</div>
-      <div className="daily-forecast__temperature">{props.temperature}&deg;</div>
+      <span className="daily-forecast__day">{props.day}</span>
+      <span className="daily-forecast__temperature">{props.temperature}&deg;</span>
     </div>
     <div className="daily-forecast__forecast-container">
-      <div className="daily-forecast__icon-code">{props.iconCode}</div>
-      <div className="daily-forecast__forecast">{props.forecast}</div>
+      <span className="daily-forecast__icon-code">{props.iconCode}</span>
+      <span className="daily-forecast__forecast">{props.forecast}</span>
     </div>
   </div>
 );

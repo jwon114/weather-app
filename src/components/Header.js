@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Header = (props) => (
   <div className="header">
-    <div className="header__location">{props.location}</div>
+    <span className="header__location">{props.location}</span>
     <div className="header__time-container">
       <div className="header__time">
         <span className="header__dot brown"></span>
@@ -15,7 +15,7 @@ const Header = (props) => (
         <span className="header__dot gold"></span>
       </div>
     </div>
-    <div className="header__temperature">{props.temperature}&deg;</div>
+    <span className="header__temperature">{props.temperature}&deg;</span>
   </div>
 );
 

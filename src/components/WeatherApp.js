@@ -82,6 +82,12 @@ export default class WeatherApp extends React.Component {
     // reset start timer again
   }
 
+  // Todo:
+  // fix current time precision
+  // day and temperature alignment
+  // progress bar smooth animation
+  // animation when data updates
+  // 
 
   
   render() {
