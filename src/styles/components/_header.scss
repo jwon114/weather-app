@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 10px 20px;
   font-size: $l-size;
   font-weight: 100;
   background-color: $dark-grey;
@@ -10,6 +10,11 @@
 
 .header__location {
   text-transform: uppercase;
+  flex: 1;
+}
+
+.header__timer-container {
+  flex: 1;
 }
 
 .header__time {
@@ -31,4 +36,9 @@
 .header__time_value {
   font-size: $s-size;
   margin: 0 5px;
+}
+
+.header__temperature {
+  flex: 1;
+  text-align: right;
 }

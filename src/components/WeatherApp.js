@@ -71,7 +71,7 @@ export default class WeatherApp extends React.Component {
 
   getCurrentTime = () => {
     const dateTimeNow = new Date();
-    return `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`
+    return `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`;
   }
 
   handleTimerFinish = () => {

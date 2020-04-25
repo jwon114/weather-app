@@ -1,3 +1,32 @@
 .daily-forecast {
-  
+  background-color: $grey;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  margin-bottom: 7px;
+}
+
+.daily-forecast__day-container {
+  display: flex;
+  width: 40%;
+  text-transform: uppercase;
+}
+
+.daily-forecast__day,
+.daily-forecast__temperature {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.daily-forecast__day {
+  font-size: $l-size;
+}
+
+.daily-forecast__temperature {
+  font-size: $xl-size;
 }
