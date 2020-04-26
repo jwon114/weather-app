@@ -4,11 +4,11 @@ exports[`should render ProgressBar correctly 1`] = `
 <div
   className="progress-bar"
 >
-  <div
+  <span
     className="progress-bar__text"
   >
     Reloading in undefineds
-  </div>
+  </span>
   <div
     className="progress-bar__container"
   >

@@ -22,7 +22,7 @@ const Header = (props) => (
 Header.propTypes = {
   location: PropTypes.string,
   time: PropTypes.string,
-  temperature: PropTypes.string
+  temperature: PropTypes.number
 }
 
 export default Header;

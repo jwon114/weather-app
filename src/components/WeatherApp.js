@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../logo.svg';
-import axios from 'axios';
+import API from '../utils/api';
 import Header from './Header';
 import ProgressBar from './ProgressBar';
 import FiveDayForecast from './FiveDayForecast';
@@ -9,61 +9,31 @@ export default class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: {
-        time: this.getCurrentTime(),
-        location: 'london',
-        temperature: '24'
-      },
-      startTimer: true,
-      weatherData: [
-        {
-          day: 'Mon',
-          temperature: '12',
-          iconCode: '01n',
-          forecast: 'Cloudy'
-        }, 
-        {
-          day: 'Tue',
-          temperature: '10',
-          iconCode: '01n',
-          forecast: 'A bt windy'
-        },
-        {
-          day: 'Wed',
-          temperature: '13',
-          iconCode: '01n',
-          forecast: 'Can\'t see very far'
-        },
-        {
-          day: 'Thu',
-          temperature: '10',
-          iconCode: '01n',
-          forecast: 'A bit windy'
-        },
-        {
-          day: 'Fri',
-          temperature: '13',
-          iconCode: '01n',
-          forecast: 'Can\'t see very far'
-        }
-      ]
+      currentTime: this.getCurrentTime(),
+      currentLocation: 'london',
+      currentTemperature: undefined,
+      startTimer: false,
+      forecastData: []
     };
   }
 
   componentDidMount() {
-    // const API_KEY = '6c8ca7a74ad9d3301728396fc82b6227'
+    this.getWeatherData();
+  }
 
-    // axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric&APPID=${API_KEY}`)
-    // .then(res => {
-    //   console.log(res);
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
-    // const dateTimeNow = new Date();
-    // this.setState(() => ({
-    //   currentTime: `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`
-    // }));
+  getWeatherData = () => {
+    API.fetchData()
+      .then(res => {
+        console.log(res, 'weatherData')
+        this.setState(() => ({
+          currentTemperature: Math.floor(res.data.current.temp),
+          startTimer: true,
+          forecastData: res.data.daily.slice(1, 6)
+        }));
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   // bonus
@@ -71,7 +41,7 @@ export default class WeatherApp extends React.Component {
 
   getCurrentTime = () => {
     const dateTimeNow = new Date();
-    return `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes()} GMT`;
+    return `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes().toString().padStart(2, 0)} GMT`;
   }
 
   handleTimerFinish = () => {
@@ -80,6 +50,7 @@ export default class WeatherApp extends React.Component {
     this.setState(() => ({ startTimer: false }));
 
     // reset start timer again
+    // this.getWeatherData();
   }
 
   // Todo:
@@ -91,22 +62,23 @@ export default class WeatherApp extends React.Component {
 
   
   render() {
-    const { current: { time, location, temperature }, startTimer, weatherData } = this.state;
+    console.log(this.state, 'this.state in render')
+    const { currentTime, currentLocation, currentTemperature, startTimer, forecastData } = this.state;
 
     return (
       <div className="WeatherApp">
         <Header 
-          location={location}
-          time={time}
-          temperature={temperature}
+          location={currentLocation}
+          time={currentTime}
+          temperature={currentTemperature}
         />
         <ProgressBar
           startTimer={startTimer}
-          initialCountdown={5}
+          initialTime={5}
           handleTimerFinished={this.handleTimerFinish}
         />
         <FiveDayForecast 
-          data={weatherData}
+          data={forecastData}
         />
       </div>
     );

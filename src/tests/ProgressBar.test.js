@@ -14,21 +14,33 @@ test('should render ProgressBar correctly', () => {
 test('should display 60 second countdown text', () => {
   const { getByText } = render(<ProgressBar 
     startTimer={true} 
-    initialCountdown={60}
+    initialTime={60}
     handleTimerFinished={() => {}} />);
 
   expect(getByText(/reloading in 60s/i)).toBeInTheDocument();
 });
 
-test('sets ProgressBar timer state to 0 when 60 second timer finishes', () => {
-  jest.useFakeTimers();
+test('sets ProgressBar timer state to initial time when mounted', () => {
   const renderer = TestRenderer.create(<ProgressBar 
-    startTimer={true} 
-    initialCountdown={60}
+    startTimer={false} 
+    initialTime={60}
     handleTimerFinished={() => {}} />);
 
   const app = renderer.getInstance();
   
+  expect(app.state.timer).toEqual(60);
+});
+
+test('sets ProgressBar timer state to 0 when timer finishes and calls handleTimerFinished function', () => {
+  jest.useFakeTimers();
+  const renderer = TestRenderer.create(<ProgressBar 
+    startTimer={true} 
+    initialTime={60}
+    handleTimerFinished={() => {}} />);
+
+  const app = renderer.getInstance();
+  app.state.startTimer = true;
+  console.log(app.state)
   expect(app.state.timer).toEqual(60);
   expect(setInterval).toHaveBeenCalled();
   expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);  

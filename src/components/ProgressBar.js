@@ -5,12 +5,15 @@ export default class ProgressBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timer: props.initialCountdown
+      timer: props.initialTime
     };
   }
 
-  componentDidMount() {
-    if (this.props.startTimer) {
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps, 'prevProps')
+    console.log(this.props.startTimer, 'this.props.startTimer')
+    if (this.props.startTimer !== prevProps.startTimer) {
+      console.log('in set interval')
       this.timerId = setInterval(this.calculateTimeLeft, 1000);
     }
   }
@@ -18,6 +21,7 @@ export default class ProgressBar extends React.Component {
   calculateTimeLeft = () => {
     if (this.state.timer === 0) {
       clearInterval(this.timerId);
+      console.log('handleTimerFinished')
       this.props.handleTimerFinished();
     } else {
       this.setState((prevState) => ({ timer: prevState.timer - 1 }));
@@ -29,7 +33,7 @@ export default class ProgressBar extends React.Component {
   }
 
   render() {
-    const percentageWidth = 100 - ((this.state.timer / this.props.initialCountdown) * 100);
+    const percentageWidth = 100 - ((this.state.timer / this.props.initialTime) * 100);
 
     return (
       <div className="progress-bar">
@@ -44,6 +48,6 @@ export default class ProgressBar extends React.Component {
 
 ProgressBar.propTypes = {
   startTimer: PropTypes.bool,
-  initialCountdown: PropTypes.number,
+  initialTime: PropTypes.number,
   handleTimerFinished: PropTypes.func
 }

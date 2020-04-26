@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render WeatherApp correctly 1`] = `
+<div
+  className="WeatherApp"
+>
+  <Header
+    location="london"
+    time="16:17 GMT"
+  />
+  <ProgressBar
+    handleTimerFinished={[Function]}
+    initialTime={5}
+    startTimer={false}
+  />
+  <FiveDayForecast
+    data={Array []}
+  />
+</div>
+`;

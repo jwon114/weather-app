@@ -4,36 +4,42 @@ exports[`should render Header correctly 1`] = `
 <div
   className="header"
 >
-  <div
+  <span
     className="header__location"
   />
   <div
-    className="header__time"
+    className="header__time-container"
   >
-    <span
-      className="header__dot brown"
-    />
-    <span
-      className="header__dot tan"
-    />
-    <span
-      className="header__dot gold"
-    />
-    <span
-      className="header__time_value"
-    />
-    <span
-      className="header__dot brown"
-    />
-    <span
-      className="header__dot tan"
-    />
-    <span
-      className="header__dot gold"
-    />
+    <div
+      className="header__time"
+    >
+      <span
+        className="header__dot brown"
+      />
+      <span
+        className="header__dot tan"
+      />
+      <span
+        className="header__dot gold"
+      />
+      <span
+        className="header__time_value"
+      />
+      <span
+        className="header__dot brown"
+      />
+      <span
+        className="header__dot tan"
+      />
+      <span
+        className="header__dot gold"
+      />
+    </div>
   </div>
-  <div
+  <span
     className="header__temperature"
-  />
+  >
+    °
+  </span>
 </div>
 `;

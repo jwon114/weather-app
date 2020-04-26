@@ -14,11 +14,11 @@ test('renders location, time and temperature', () => {
   const { getByText } = render(<Header 
     location={'london'} 
     time={'10:24 GMT'}
-    temperature={'24'} />)
+    temperature={24} />)
 
   const locationElement = getByText(/london/i);
   const timeElement = getByText('10:24 GMT');
-  const temperatureElement = getByText('24');
+  const temperatureElement = getByText((content, node) => node.textContent === 24 + '°');
 
   expect(locationElement).toBeInTheDocument();
   expect(timeElement).toBeInTheDocument();

@@ -30,3 +30,9 @@
 .daily-forecast__temperature {
   font-size: $xl-size;
 }
+
+.daily-forecast__forecast-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
