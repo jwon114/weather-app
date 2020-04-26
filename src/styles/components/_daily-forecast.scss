@@ -15,24 +15,34 @@
   text-transform: uppercase;
   justify-content: center;
   align-items: center;
-}
 
-.daily-forecast__day,
-.daily-forecast__temperature {
-  flex: 1;
-  text-align: center;
-}
+  .daily-forecast__day,
+  .daily-forecast__temperature {
+    flex: 1;
+    text-align: center;
+  }
 
-.daily-forecast__day {
-  font-size: $l-size;
-}
+  .daily-forecast__day {
+    font-size: $l-size;
+  }
 
-.daily-forecast__temperature {
-  font-size: $xl-size;
+  .daily-forecast__temperature {
+    font-size: $xl-size;
+  }
 }
 
 .daily-forecast__forecast-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   width: 30%;
+
+  .daily-forecast__icon-code {
+    width: 60%;
+  }
+
+  .daily-forecast__forecast {
+    text-transform: uppercase;
+    font-size: $s-size;
+  }
 }

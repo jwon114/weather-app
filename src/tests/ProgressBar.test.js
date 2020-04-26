@@ -33,19 +33,34 @@ test('sets ProgressBar timer state to initial time when mounted', () => {
 
 test('sets ProgressBar timer state to 0 when timer finishes and calls handleTimerFinished function', () => {
   jest.useFakeTimers();
-  const renderer = TestRenderer.create(<ProgressBar 
+  let renderer = TestRenderer.create(<ProgressBar 
     startTimer={true} 
     initialTime={60}
     handleTimerFinished={() => {}} />);
 
   const app = renderer.getInstance();
-  app.state.startTimer = true;
-  console.log(app.state)
   expect(app.state.timer).toEqual(60);
   expect(setInterval).toHaveBeenCalled();
   expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);  
   jest.advanceTimersByTime(60000);
   expect(app.state.timer).toEqual(0);
+  expect(app.props.handleTimerFinished).toHaveBeenCalled();
 });
 
+// test('starts ProgressBar timer when startTimer prop changes', () => {
+//   jest.useFakeTimers();
+//   let renderer = TestRenderer.create(<ProgressBar 
+//     startTimer={false} 
+//     initialTime={60}
+//     handleTimerFinished={() => {}} />);
+
+//   const app = renderer.getInstance();
+//   expect(app.state.timer).toEqual(60);
+//   app.update();
+//   expect(setInterval).toHaveBeenCalled();
+//   expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);  
+//   jest.advanceTimersByTime(60000);
+//   expect(app.state.timer).toEqual(0);
+//   expect(app.props.handleTimerFinished).toHaveBeenCalled();
+// });
 

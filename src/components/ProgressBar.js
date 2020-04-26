@@ -5,22 +5,40 @@ export default class ProgressBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      initialTime: props.initialTime,
       timer: props.initialTime
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps, 'prevProps')
-    console.log(this.props.startTimer, 'this.props.startTimer')
-    if (this.props.startTimer !== prevProps.startTimer) {
-      console.log('in set interval')
-      this.timerId = setInterval(this.calculateTimeLeft, 1000);
+  componentDidMount() {
+    if (this.props.startTimer) {
+      this.startTimer();
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // refactor or fix?
+    if (this.props.startTimer !== prevProps.startTimer) {
+      if (this.props.startTimer) {
+        this.startTimer();
+      } else {
+        this.resetTimer();
+      }
+    }
+  }
+
+  startTimer = () => {
+    this.timerId = setInterval(this.calculateTimeLeft, 1000);
+  }
+
+  resetTimer = () => {
+    clearInterval(this.timerId);
+    this.setState(() => ({ timer: this.state.initialTime }));
   }
 
   calculateTimeLeft = () => {
     if (this.state.timer === 0) {
-      clearInterval(this.timerId);
+      this.resetTimer();
       console.log('handleTimerFinished')
       this.props.handleTimerFinished();
     } else {

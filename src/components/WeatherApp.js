@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../logo.svg';
 import API from '../utils/api';
 import Header from './Header';
 import ProgressBar from './ProgressBar';
@@ -9,7 +8,7 @@ export default class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: this.getCurrentTime(),
+      currentTime: undefined,
       currentLocation: 'london',
       currentTemperature: undefined,
       startTimer: false,
@@ -23,17 +22,18 @@ export default class WeatherApp extends React.Component {
 
   getWeatherData = () => {
     API.fetchData()
-      .then(res => {
-        console.log(res, 'weatherData')
-        this.setState(() => ({
-          currentTemperature: Math.floor(res.data.current.temp),
-          startTimer: true,
-          forecastData: res.data.daily.slice(1, 6)
-        }));
-      })
-      .catch(err => {
-        console.log(err);
-      })
+    .then(res => {
+      console.log(res, 'weatherData')
+      this.setState(() => ({
+        currentTime: this.getCurrentTime(),
+        currentTemperature: Math.floor(res.data.current.temp),
+        startTimer: true,
+        forecastData: res.data.daily.slice(1, 6)
+      }));
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   // bonus
@@ -54,7 +54,6 @@ export default class WeatherApp extends React.Component {
   }
 
   // Todo:
-  // fix current time precision
   // day and temperature alignment
   // progress bar smooth animation
   // animation when data updates

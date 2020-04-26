@@ -7,10 +7,10 @@ const FiveDayForecast = (props) => (
     {props.data.map((d, index) => (
       <DailyForecast
         key={index}
-        day={d.day} 
-        temperature={d.temperature}
-        iconCode={d.iconCode}
-        forecast={d.forecast} 
+        day={d.dt} 
+        temperature={d.temp.day}
+        iconCode={d.weather[0].icon}
+        forecast={d.weather[0].description} 
       />
     ))}
   </div>

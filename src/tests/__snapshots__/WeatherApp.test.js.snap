@@ -6,7 +6,6 @@ exports[`should render WeatherApp correctly 1`] = `
 >
   <Header
     location="london"
-    time="16:17 GMT"
   />
   <ProgressBar
     handleTimerFinished={[Function]}
