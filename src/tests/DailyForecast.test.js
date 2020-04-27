@@ -10,24 +10,24 @@ test('should render Forecast correctly', () => {
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
-// test('should display the Day, Temperature, Weather Description', () => {
-//   const testData = [
-//     {
-//       dt: 1587985200,
-//       temp: { day: 18.69 },
-//       weather: [{ description: 'light rain' }]
-//     }
-//   ];
+test('should display the Day, Temperature, Weather Description', () => {
+  const testData = [
+    {
+      dt: 1587985200,
+      temp: { day: 18.69 },
+      weather: [{ description: 'clear sky', icon: '01d' }]
+    }
+  ];
 
-//   const { container, getByText } = render(<DailyForecast 
-//     key={0}
-//     day={testData[0].dt} 
-//     temperature={testData[0].temp.day}
-//     iconCode={testData[0].weather[0].icon}
-//     forecast={testData[0].weather[0].description} />);
+  const { findBy, getByText } = render(<DailyForecast 
+    key={0}
+    day={testData[0].dt} 
+    temperature={testData[0].temp.day}
+    iconCode={testData[0].weather[0].icon}
+    forecast={testData[0].weather[0].description} />);
   
-//   expect(container.firstChild.children.length).toBe(5);
-//   expect(getByText(/mon/i)).toBeInTheDocument();
-//   expect(getByText((content, node) => node.textContent === 18 + '°')).toBeInTheDocument();
-//   expect(getByText(/light rain/i)).toBeInTheDocument();
-// });
+  expect(getByText(/mon/i)).toBeInTheDocument();
+  expect(getByText((content, node) => node.textContent === 18 + '°')).toBeInTheDocument();
+  expect(getByText(/clear sky/i)).toBeInTheDocument();
+  // expect(findBy())
+});

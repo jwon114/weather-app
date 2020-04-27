@@ -5,7 +5,6 @@ export default class ProgressBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialTime: props.initialTime,
       timer: props.initialTime
     };
   }
@@ -28,22 +27,20 @@ export default class ProgressBar extends React.Component {
   }
 
   startTimer = () => {
-    this.timerId = setInterval(this.calculateTimeLeft, 1000);
+    this.timerId = setInterval(() => {
+      if (this.state.timer === 0) {
+        this.resetTimer();
+        console.log('handleTimerFinished')
+        this.props.handleTimerFinished();
+      } else {
+        this.setState((prevState) => ({ timer: prevState.timer - 1 }));
+      }
+    }, 1000);
   }
 
   resetTimer = () => {
     clearInterval(this.timerId);
-    this.setState(() => ({ timer: this.state.initialTime }));
-  }
-
-  calculateTimeLeft = () => {
-    if (this.state.timer === 0) {
-      this.resetTimer();
-      console.log('handleTimerFinished')
-      this.props.handleTimerFinished();
-    } else {
-      this.setState((prevState) => ({ timer: prevState.timer - 1 }));
-    }
+    this.setState(() => ({ timer: this.props.initialTime }));
   }
 
   componentWillUnmount() {
@@ -65,7 +62,7 @@ export default class ProgressBar extends React.Component {
 }
 
 ProgressBar.propTypes = {
-  startTimer: PropTypes.bool,
-  initialTime: PropTypes.number,
-  handleTimerFinished: PropTypes.func
+  startTimer: PropTypes.bool.isRequired,
+  initialTime: PropTypes.number.isRequired,
+  handleTimerFinished: PropTypes.func.isRequired
 }

@@ -1,5 +1,5 @@
 .daily-forecast {
-  background-color: $grey;
+  background-image: linear-gradient($grey, $light-grey, $lighter-grey, $lightest-grey);
   border: 1px solid $grey;
   border-radius: 5px;
   padding: 5px 10px;

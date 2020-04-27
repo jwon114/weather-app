@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Forecast correctly 1`] = `
+<div
+  className="daily-forecast"
+>
+  <div
+    className="daily-forecast__day-container"
+  >
+    <span
+      className="daily-forecast__day"
+    />
+    <span
+      className="daily-forecast__temperature"
+    >
+      NaN
+      °
+    </span>
+  </div>
+  <div
+    className="daily-forecast__forecast-container"
+  >
+    <img
+      alt="weather forecast icon"
+      className="daily-forecast__icon-code"
+      src="http://openweathermap.org/img/wn/undefined.png"
+    />
+    <span
+      className="daily-forecast__forecast"
+    />
+  </div>
+</div>
+`;
