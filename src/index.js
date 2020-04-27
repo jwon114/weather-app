@@ -5,9 +5,7 @@ import './styles/styles.scss';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <WeatherApp />
-  </React.StrictMode>,
+  <WeatherApp />,
   document.getElementById('root')
 );
 

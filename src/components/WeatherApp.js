@@ -13,7 +13,9 @@ export default class WeatherApp extends React.Component {
       currentLocation: 'london',
       currentTemperature: undefined,
       startTimer: false,
-      forecastData: []
+      forecastData: [],
+      animate: false,
+      loading: true
     };
   }
 
@@ -35,7 +37,9 @@ export default class WeatherApp extends React.Component {
           currentTime: this.getCurrentTime(),
           currentTemperature: Math.floor(currentTemperature),
           startTimer: true,
-          forecastData
+          forecastData,
+          animate: true,
+          loading: false
         }));
       })
       .catch(err => {
@@ -70,10 +74,14 @@ export default class WeatherApp extends React.Component {
   handleTimerFinish = () => {
     console.log('timer finished')
     // stop timer
-    this.setState(() => ({ startTimer: false }));
+    this.setState(() => ({ 
+      startTimer: false,
+      animate: false,
+      loading: true
+    }));
 
     // reset start timer again
-    this.getWeatherData();
+    // this.getWeatherData();
   }
 
   // Todo:
@@ -93,15 +101,20 @@ export default class WeatherApp extends React.Component {
           location={currentLocation}
           time={currentTime}
           temperature={currentTemperature}
+          animate={this.state.animate}
         />
         <ProgressBar
           startTimer={startTimer}
-          initialTime={60}
+          initialTime={5}
           handleTimerFinished={this.handleTimerFinish}
         />
+        {forecastData.length === 0 && <p>No weather forecast data</p>}
+        {forecastData && 
         <FiveDayForecast 
           data={forecastData}
-        />
+          animate={this.state.animate}
+          loading={this.state.loading}
+        />}
       </div>
     );
   }
