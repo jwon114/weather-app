@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import Date from '../utils/date';
+import DateUtils from '../utils/date';
 
 const DailyForecast = (props) => (
   <div className="daily-forecast">
     <div className="daily-forecast__day-container">
-      <span className="daily-forecast__day">{Date.getDayOfWeek(props.day)}</span>
+      <span className="daily-forecast__day">{DateUtils.getDayOfWeek(props.day)}</span>
       <span className="daily-forecast__temperature">{Math.floor(props.temperature)}&deg;</span>
     </div>
     <div className="daily-forecast__forecast-container">

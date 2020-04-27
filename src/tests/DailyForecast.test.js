@@ -13,13 +13,13 @@ test('should render Forecast correctly', () => {
 test('should display the Day, Temperature, Weather Description', () => {
   const testData = [
     {
-      dt: 1587985200,
+      dt: 1587985200, // Monday
       temp: { day: 18.69 },
       weather: [{ description: 'clear sky', icon: '01d' }]
     }
   ];
 
-  const { findBy, getByText } = render(<DailyForecast 
+  const { getByAltText, getByText } = render(<DailyForecast 
     key={0}
     day={testData[0].dt} 
     temperature={testData[0].temp.day}
@@ -29,5 +29,5 @@ test('should display the Day, Temperature, Weather Description', () => {
   expect(getByText(/mon/i)).toBeInTheDocument();
   expect(getByText((content, node) => node.textContent === 18 + '°')).toBeInTheDocument();
   expect(getByText(/clear sky/i)).toBeInTheDocument();
-  // expect(findBy())
+  expect(getByAltText(/weather forecast icon/i).src).toEqual(`http://openweathermap.org/img/wn/${testData[0].weather[0].icon}.png`);
 });

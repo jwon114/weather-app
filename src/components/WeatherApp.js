@@ -1,5 +1,6 @@
 import React from 'react';
 import API from '../utils/api';
+import DateUtils from '../utils/date';
 import Header from './Header';
 import ProgressBar from './ProgressBar';
 import FiveDayForecast from './FiveDayForecast';
@@ -21,19 +22,41 @@ export default class WeatherApp extends React.Component {
   }
 
   getWeatherData = () => {
-    API.fetchData()
+    API.fetchCurrentWeather()
     .then(res => {
-      console.log(res, 'weatherData')
-      this.setState(() => ({
-        currentTime: this.getCurrentTime(),
-        currentTemperature: Math.floor(res.data.current.temp),
-        startTimer: true,
-        forecastData: res.data.daily.slice(1, 6)
-      }));
+      console.log(res, 'current weather')
+      const currentTemperature = res.data.main.temp;
+      API.fetchFiveDayForecast()
+      .then(res => {
+        console.log(res, 'res')
+        const forecastData = this.filterForecastData(res.data.list);
+        console.log(forecastData, 'forecastData');
+        this.setState(() => ({
+          currentTime: this.getCurrentTime(),
+          currentTemperature: Math.floor(currentTemperature),
+          startTimer: true,
+          forecastData
+        }));
+      })
+      .catch(err => {
+        console.log(err);
+      })
     })
     .catch(err => {
       console.log(err);
     })
+  }
+
+  filterForecastData = (data) => {
+    const filteredData = data.filter((dataObject) => {
+      const forecastHour = DateUtils.getForecastHour(dataObject.dt);
+      const morningHour = 9
+    
+      return forecastHour === morningHour;
+    });
+
+    // in some instances the current day will be included if the current time is early morning.
+    return filteredData.length > 5 ? filteredData.slice(1, 5) : filteredData;
   }
 
   // bonus
@@ -50,7 +73,7 @@ export default class WeatherApp extends React.Component {
     this.setState(() => ({ startTimer: false }));
 
     // reset start timer again
-    // this.getWeatherData();
+    this.getWeatherData();
   }
 
   // Todo:
@@ -73,7 +96,7 @@ export default class WeatherApp extends React.Component {
         />
         <ProgressBar
           startTimer={startTimer}
-          initialTime={5}
+          initialTime={60}
           handleTimerFinished={this.handleTimerFinish}
         />
         <FiveDayForecast 

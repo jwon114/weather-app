@@ -9,9 +9,9 @@ const FiveDayForecast = (props) => (
       <DailyForecast
         key={index}
         day={d.dt} 
-        temperature={d.temp.day}
+        temperature={d.main.temp}
         iconCode={d.weather[0].icon}
-        forecast={d.weather[0].description} 
+        forecast={d.weather[0].description}
       />
     ))}
   </div>

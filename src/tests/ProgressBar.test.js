@@ -43,7 +43,7 @@ test('sets ProgressBar timer state to 0 when timer finishes', () => {
 
   const app = renderer.getInstance();
   expect(app.state.timer).toEqual(60);
-  expect(setInterval).toHaveBeenCalled();
+  expect(setInterval).toHaveBeenCalledTimes(1);
   expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);  
   jest.advanceTimersByTime(60000);
   expect(app.state.timer).toEqual(0);
@@ -60,7 +60,7 @@ test('calls handleTimerFinished function and resets timer to initialTime when ti
   expect(app.state.timer).toEqual(60);
   jest.runAllTimers();
   expect(app.state.timer).toEqual(60);
-  expect(app.props.handleTimerFinished).toHaveBeenCalled();
+  expect(app.props.handleTimerFinished).toHaveBeenCalledTimes(1);
 });
 
 test('starts ProgressBar timer when startTimer prop changes', () => {
@@ -72,6 +72,7 @@ test('starts ProgressBar timer when startTimer prop changes', () => {
 
   const app = renderer.getInstance();
   expect(app.state.timer).toEqual(60);
+  expect(setInterval).toHaveBeenCalledTimes(0);
 
   renderer.update(<ProgressBar 
     startTimer={true} 
@@ -79,7 +80,7 @@ test('starts ProgressBar timer when startTimer prop changes', () => {
     handleTimerFinished={jest.fn()} />);
   
   expect(app.state.timer).toEqual(60);
-  expect(setInterval).toHaveBeenCalled();
+  expect(setInterval).toHaveBeenCalledTimes(1);
   expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
 });
 
