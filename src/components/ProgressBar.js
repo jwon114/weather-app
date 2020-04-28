@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ProgressBar extends React.Component {
+export default class ProgressBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,6 @@ export default class ProgressBar extends React.Component {
     this.timerId = setInterval(() => {
       if (this.state.timer === 0) {
         this.resetTimer();
-        console.log('handleTimerFinished')
         this.props.handleTimerFinished();
       } else {
         this.setState((prevState) => ({ timer: prevState.timer - 1 }));

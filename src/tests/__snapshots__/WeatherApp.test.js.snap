@@ -7,17 +7,31 @@ exports[`should render WeatherApp correctly 1`] = `
   <Header
     animate={false}
     location="london"
-    time="13:35 GMT"
   />
   <ProgressBar
     handleTimerFinished={[Function]}
-    initialTime={10}
+    initialTime={60}
     startTimer={false}
   />
-  <FiveDayForecast
-    animate={false}
-    data={Array []}
-    loading={true}
-  />
+  <div
+    className="forecast-container"
+  >
+    <div
+      className="loader"
+    >
+      <Loader
+        color="#000000"
+        css=""
+        loading={true}
+        margin={2}
+        size={20}
+      />
+    </div>
+    <FiveDayForecast
+      animate={false}
+      data={Array []}
+      loading={true}
+    />
+  </div>
 </div>
 `;

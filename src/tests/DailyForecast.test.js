@@ -20,11 +20,11 @@ test('should display the Day, Temperature, Weather Description', () => {
   ];
 
   const { getByAltText, getByText } = render(<DailyForecast 
-    key={0}
-    day={testData[0].dt} 
-    temperature={testData[0].temp.day}
-    iconCode={testData[0].weather[0].icon}
-    forecast={testData[0].weather[0].description} />);
+                                                key={testData[0].dt}
+                                                day={testData[0].dt} 
+                                                temperature={testData[0].temp.day}
+                                                iconCode={testData[0].weather[0].icon}
+                                                forecast={testData[0].weather[0].description} />);
   
   expect(getByText(/mon/i)).toBeInTheDocument();
   expect(getByText((content, node) => node.textContent === 18 + '°')).toBeInTheDocument();

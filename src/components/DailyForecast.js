@@ -16,10 +16,10 @@ const DailyForecast = (props) => (
 );
 
 DailyForecast.propTypes = {
-  day: PropTypes.number.isRequired,
-  temperature: PropTypes.number.isRequired,
-  iconCode: PropTypes.string.isRequired,
-  forecast: PropTypes.string.isRequired
+  day: PropTypes.number,
+  temperature: PropTypes.number,
+  iconCode: PropTypes.string,
+  forecast: PropTypes.string
 };
 
 export default DailyForecast;

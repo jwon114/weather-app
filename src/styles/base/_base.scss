@@ -24,6 +24,17 @@ button:disabled {
   background-color: $black;
   display: flex;
   flex-direction: column;
+
+  .forecast-container {
+    flex: 1;
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
 }
 
 .gold {

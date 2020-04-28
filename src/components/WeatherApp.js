@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import API from '../utils/api';
-import DateUtils from '../utils/date';
 import Header from './Header';
 import ProgressBar from './ProgressBar';
 import FiveDayForecast from './FiveDayForecast';
+import PulseLoader from "react-spinners/PulseLoader";
+import Colors from '../styles/base/_settings.scss';
 
-export default class WeatherApp extends React.Component {
+export default class WeatherApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: this.getCurrentTime(),
+      currentTime: undefined,
       currentLocation: 'london',
       currentTemperature: undefined,
       startTimer: false,
@@ -26,14 +27,12 @@ export default class WeatherApp extends React.Component {
   getWeatherData = () => {
     API.fetchCurrentWeather()
     .then(res => {
-      console.log(res, 'current weather')
       const currentTemperature = res.data.main.temp;
       API.fetchFiveDayForecast()
       .then(res => {
-        console.log(res, 'res')
         const forecastData = this.filterForecastData(res.data.list);
-        console.log(forecastData, 'forecastData');
-        this.setState((prevState) => ({
+        this.saveLatestFetch(forecastData, currentTemperature);
+        this.setState(() => ({
           currentTime: this.getCurrentTime(),
           currentTemperature: Math.floor(currentTemperature),
           startTimer: true,
@@ -48,52 +47,71 @@ export default class WeatherApp extends React.Component {
     })
     .catch(err => {
       console.log(err);
+      try {
+        const { weatherData, currentTemperature } = this.getLatestFetch();
+        this.setState(() => ({
+          currentTime: this.getCurrentTime(),
+          currentTemperature: Math.floor(currentTemperature),
+          startTimer: true,
+          forecastData: weatherData,
+          animate: true,
+          loading: false
+        }));
+      } catch(e) {
+        console.log(e);
+      }
     })
   }
 
+  // use localStorage to keep latest copy of forecast data in case API call fails
+  saveLatestFetch = (forecastData, currentTemperature) => {
+    const forecastDataJSON = JSON.stringify(forecastData);
+    const currentTemperatureJSON = JSON.stringify(currentTemperature);
+    localStorage.setItem('weatherData', forecastDataJSON);
+    localStorage.setItem('currentTemperature', currentTemperatureJSON);
+  }
+
+  getLatestFetch = () => {
+    const weatherData = JSON.parse(localStorage.getItem('weatherData'));
+    const currentTemperature = JSON.parse(localStorage.getItem('currentTemperature'));
+    return { weatherData, currentTemperature }
+  }
+
   filterForecastData = (data) => {
-    const morningHour = 9
+    const morningHour = 9;
     const filteredData = data.filter((dataObject) => {
-      const forecastHour = DateUtils.getForecastHour(dataObject.dt);
-      
+      const forecastHour = new Date(dataObject.dt * 1000).getUTCHours();
       return forecastHour === morningHour;
     });
 
-    const firstDate = DateUtils.getForecastDate(filteredData[0].dt)
-    const todaysDateTime = new Date();
-    const todaysDate = todaysDateTime.getUTCDate();
+    const firstDate = new Date(filteredData[0].dt * 1000).getUTCDate();
+    const todaysDate = new Date().getUTCDate();
 
-    // for early mornings, the 09:00 forecast is not available for the 5th day.
+    // For early mornings, the 5th day 09:00 forecast is not covered by the 40 datapoints. Remove the first datapoint and append the latest 5th day forecast.
     if ((firstDate === todaysDate) && (filteredData.length === 5)) {
       filteredData.shift();
       filteredData.push(data[data.length - 1]);
     }
 
-    // possible overlap with current day and 5th day around 09:00 hour
+    // Possible overlap with current day and 5th day around 09:00 hour
     return filteredData.length > 5 ? filteredData.slice(1, 5) : filteredData;
   }
 
-  // bonus
-  // use localStorage to keep latest copy of temperature data in case API call fails
-
   getCurrentTime = () => {
-    const dateTimeNow = new Date();
-    return `${dateTimeNow.getUTCHours()}:${dateTimeNow.getUTCMinutes().toString().padStart(2, 0)} GMT`;
+    const timeNow = new Date();
+    const hours = timeNow.getUTCHours();
+    const minutes = timeNow.getUTCMinutes().toString().padStart(2, 0);
+    return `${hours}:${minutes} GMT`;
   }
 
   handleTimerFinish = () => {
-    console.log('timer finished')
     // stop timer
-    this.setState((prevState) => ({
+    this.setState(() => ({
       forecastData: [],
       startTimer: false,
       animate: false,
       loading: true
     }));
-
-    // setTimeout(() => {
-    //   console.log('in timeout of 1 second')
-    // }, 1000)
 
     // reset start timer again
     this.getWeatherData();
@@ -102,12 +120,8 @@ export default class WeatherApp extends React.Component {
   // Todo:
   // day and temperature alignment
   // progress bar smooth animation
-  // animation when data updates
-  // 
 
-  
   render() {
-    console.log(this.state, 'this.state in render')
     const { currentTime, currentLocation, currentTemperature, startTimer, forecastData, animate, loading } = this.state;
 
     return (
@@ -120,14 +134,23 @@ export default class WeatherApp extends React.Component {
         />
         <ProgressBar
           startTimer={startTimer}
-          initialTime={10}
+          initialTime={60}
           handleTimerFinished={this.handleTimerFinish}
         />
-        <FiveDayForecast 
-          data={forecastData}
-          animate={animate}
-          loading={loading}
-        />
+        <div className="forecast-container">
+          {loading && <div className="loader">
+            <PulseLoader
+              size={20}
+              loading={loading}
+              color={Colors.tan}
+            />
+          </div>}
+          <FiveDayForecast 
+            data={forecastData}
+            animate={animate}
+            loading={loading}
+          />
+        </div>
       </div>
     );
   }
