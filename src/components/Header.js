@@ -27,7 +27,7 @@ const Header = (props) => (
       to={{ opacity: 1 }}
       reset={props.animate}
       config={{ duration: 2000 }} >
-      {styleProps => <span style={styleProps} className="header__temperature">{props.temperature}&deg;</span>}
+      {styleProps => <span style={styleProps} className="header__temperature">{props.temperature || 'No Temp'}&deg;</span>}
     </Spring>
   </div>
 )

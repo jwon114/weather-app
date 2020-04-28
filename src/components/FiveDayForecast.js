@@ -5,7 +5,9 @@ import { Transition } from 'react-spring/renderprops';
 
 const FiveDayForecast = (props) => (
   <div className="five-day-forecast">
-    {props.data.length > 0 && 
+    {props.data.length === 0 && 
+      <div className="five-day-forecast__data-not-available">No weather forecast data available.</div>}
+    {props.data.length > 0 &&
       <Transition
         items={props.data} 
         keys={item => item.dt}

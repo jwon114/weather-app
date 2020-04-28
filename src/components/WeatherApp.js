@@ -43,7 +43,7 @@ export default class WeatherApp extends Component {
       console.log(err);
       try {
         const { forecastData, currentTemperature } = this.getLatestFetchData();
-        this.setStateFromWeatherData(forecastData, currentTemperature);
+        this.saveWeatherDataToState(forecastData, currentTemperature);
       } catch(e) {
         console.log(e);
       }
@@ -70,9 +70,9 @@ export default class WeatherApp extends Component {
   }
 
   getLatestFetchData = () => {
-    const weatherData = JSON.parse(localStorage.getItem('weatherData'));
-    const currentTemperature = JSON.parse(localStorage.getItem('currentTemperature'));
-    return { weatherData, currentTemperature }
+    const forecastData = JSON.parse(localStorage.getItem('forecastData')) || [];
+    const currentTemperature = JSON.parse(localStorage.getItem('currentTemperature')) || undefined;
+    return { forecastData, currentTemperature };
   }
 
   filterForecastData = (data) => {

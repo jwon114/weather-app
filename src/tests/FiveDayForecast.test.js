@@ -52,3 +52,12 @@ test('should render the the next 5 days', () => {
   expect(getByText(/thu/i)).toBeInTheDocument();
   expect(getByText(/fri/i)).toBeInTheDocument();
 });
+
+test('should render error message when API and localStorage is not available', () => {
+  const { getByText } = render(<FiveDayForecast 
+                                data={[]} 
+                                animate={false}
+                                loading={false} />);
+
+  expect(getByText(/no weather forecast data available/i)).toBeInTheDocument();
+});

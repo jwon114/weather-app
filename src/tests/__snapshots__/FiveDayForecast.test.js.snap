@@ -3,5 +3,11 @@
 exports[`should render Forecast correctly 1`] = `
 <div
   className="five-day-forecast"
-/>
+>
+  <div
+    className="five-day-forecast__data-not-available"
+  >
+    No weather forecast data available.
+  </div>
+</div>
 `;

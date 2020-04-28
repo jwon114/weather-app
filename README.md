@@ -1,15 +1,26 @@
 # Weather App
 A simple React app that displays the current weather information in London, and weather forecasts for the next 5 days. A 1 minute counter and progress bar displays the time until the weather information is refreshed.
 
+OpenWeather API provided the weather information.
+
 ## Getting Started
 Git clone or download the repository.
 
 ## Prerequisites
 These are required for install:
 - Node
-- yarn
+- yarn or npm
 
 ## Installing
+Install the project dependencies
+
+```
+yarn install
+```
+or
+```
+npm install
+```
 
 ## Available Scripts
 Scripts that were made available through Create React App
@@ -29,9 +40,35 @@ yarn test
 
 Launches the test runner in the interactive watch mode.
 
+### Deployment
+```
+yarn build
+```
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Implementation
+- Fetched weather information using two OpenWeather API endpoints:
+1. To retrieve the current weather (https://openweathermap.org/current)
+2. For a 5 day/3 hour weather forecast (https://openweathermap.org/forecast5)
+- Data manipulation was required to retrieve daily forecasting from 5 day/3 hour 40 
+- Increment the refresh counter with a timer and animate progress bar using inline CSS styles.
+- Use Web API's Window.localStorage to store the latest fetched weather information. In the case of a failed fetch this information will be displayed instead.
+- If no fetch data is saved, no data available messages are shown.
+
 ## Assumptions
+- The weather information fetched is always set to London.
+- 5 day forecast only.
+- 1 minute countdown for weather information refresh.
+- OpenWeather API free account only.
+- The time of day for daily weather forecasting was taken at 12:00 when possible.
+- Forecasting starts at current time to the nearest 3 hour interval. During the early mornings (after 00:00 and before 09:00), the 5th day forecast at 12:00 was not available because it is not within the 40 forecasts. Assumed to take the forecast at 09:00 instead.
 
 ## Future Improvements
+- OpenWeather API recently released an endpoint named "One Call API". It provides the current weather and a daily forecast for 7 days. This might be a more appropriate endpoint to use because it requires only one API call and no data manipulation to retrieve daily forecasting.
+- Progress bar animation smoothness.
+- More interesting animations when transitioning to new data.
 
 ## Built With
 - [Open Weather Map API] (https://openweathermap.org/api) 
@@ -47,73 +84,3 @@ Launches the test runner in the interactive watch mode.
 
 ## Authors
 James Wong
-
-
-
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

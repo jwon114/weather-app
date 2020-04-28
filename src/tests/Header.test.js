@@ -19,3 +19,9 @@ test('renders location, time and temperature', () => {
   expect(getByText('10:24 GMT')).toBeInTheDocument();
   expect(getByText((content, node) => node.textContent === 24 + '°')).toBeInTheDocument();
 });
+
+test('renders "No Temp" when current temperature is not available', () => {
+  const { getByText } = render(<Header temperature={undefined} />)
+
+  expect(getByText(/no temp/i)).toBeInTheDocument();
+});

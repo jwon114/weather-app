@@ -1,3 +1,9 @@
 .five-day-forecast {
   padding: 7px;
+
+  .five-day-forecast__data-not-available {
+    font-size: $m-size;
+    text-align: center;
+    margin-top: 50px;
+  }
 }

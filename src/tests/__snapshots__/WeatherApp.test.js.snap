@@ -54,6 +54,7 @@ exports[`should render WeatherApp correctly 1`] = `
         }
       }
     >
+      No Temp
       °
     </span>
   </div>
@@ -100,7 +101,13 @@ exports[`should render WeatherApp correctly 1`] = `
     </div>
     <div
       className="five-day-forecast"
-    />
+    >
+      <div
+        className="five-day-forecast__data-not-available"
+      >
+        No weather forecast data available.
+      </div>
+    </div>
   </div>
 </div>
 `;

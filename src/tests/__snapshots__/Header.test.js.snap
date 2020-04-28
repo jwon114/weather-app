@@ -51,6 +51,7 @@ exports[`should render Header correctly 1`] = `
       }
     }
   >
+    No Temp
     °
   </span>
 </div>

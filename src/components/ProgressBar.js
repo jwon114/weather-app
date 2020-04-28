@@ -16,7 +16,6 @@ export default class ProgressBar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // refactor or fix?
     if (this.props.startTimer !== prevProps.startTimer) {
       if (this.props.startTimer) {
         this.startTimer();
