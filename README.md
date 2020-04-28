@@ -1,8 +1,50 @@
+# Weather App
+A simple React app that displays the current weather information in London, and weather forecasts for the next 5 days. A 1 minute counter and progress bar displays the time until the weather information is refreshed.
+
+## Getting Started
+
+## Prerequisites
+
+## Installing
+
+## Available Scripts
+Scripts that were made available through Create React App
+
+### Starting the Development Server
+```
+yarn start
+```
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### Running the Tests
+```
+yarn test
+```
+
+Launches the test runner in the interactive watch mode.
+
+## Assumptions
+
+## Future Improvements
+
+## Built With
+- [Open Weather Map API] (https://openweathermap.org/api) 
+- This project was bootstrapped with [Create React App] (https://github.com/facebook/create-react-app).
+- [React v16] (https://reactjs.org/)
+- [axios] (https://github.com/axios/axios)
+- [react-spring] (https://github.com/react-spring/react-spring)
+- [react-spinners] (https://github.com/davidhu2000/react-spinners)
+- [node-sass] (https://github.com/sass/node-sass)
+- [Jest] (https://jestjs.io/)
+- [React-Test-Renderer] (https://reactjs.org/docs/test-renderer.html)
+
+## Authors
+James Wong
 
 
 
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
