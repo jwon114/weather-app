@@ -33,7 +33,7 @@ export default class WeatherApp extends React.Component {
         console.log(res, 'res')
         const forecastData = this.filterForecastData(res.data.list);
         console.log(forecastData, 'forecastData');
-        this.setState(() => ({
+        this.setState((prevState) => ({
           currentTime: this.getCurrentTime(),
           currentTemperature: Math.floor(currentTemperature),
           startTimer: true,
@@ -52,14 +52,24 @@ export default class WeatherApp extends React.Component {
   }
 
   filterForecastData = (data) => {
+    const morningHour = 9
     const filteredData = data.filter((dataObject) => {
       const forecastHour = DateUtils.getForecastHour(dataObject.dt);
-      const morningHour = 9
-    
+      
       return forecastHour === morningHour;
     });
 
-    // in some instances the current day will be included if the current time is early morning.
+    const firstDate = DateUtils.getForecastDate(filteredData[0].dt)
+    const todaysDateTime = new Date();
+    const todaysDate = todaysDateTime.getUTCDate();
+
+    // for early mornings, the 09:00 forecast is not available for the 5th day.
+    if ((firstDate === todaysDate) && (filteredData.length === 5)) {
+      filteredData.shift();
+      filteredData.push(data[data.length - 1]);
+    }
+
+    // possible overlap with current day and 5th day around 09:00 hour
     return filteredData.length > 5 ? filteredData.slice(1, 5) : filteredData;
   }
 
@@ -74,11 +84,16 @@ export default class WeatherApp extends React.Component {
   handleTimerFinish = () => {
     console.log('timer finished')
     // stop timer
-    this.setState(() => ({ 
+    this.setState((prevState) => ({
+      forecastData: [],
       startTimer: false,
       animate: false,
       loading: true
     }));
+
+    // setTimeout(() => {
+    //   console.log('in timeout of 1 second')
+    // }, 1000)
 
     // reset start timer again
     // this.getWeatherData();
@@ -93,7 +108,7 @@ export default class WeatherApp extends React.Component {
   
   render() {
     console.log(this.state, 'this.state in render')
-    const { currentTime, currentLocation, currentTemperature, startTimer, forecastData } = this.state;
+    const { currentTime, currentLocation, currentTemperature, startTimer, forecastData, animate, loading } = this.state;
 
     return (
       <div className="WeatherApp">
@@ -101,20 +116,18 @@ export default class WeatherApp extends React.Component {
           location={currentLocation}
           time={currentTime}
           temperature={currentTemperature}
-          animate={this.state.animate}
+          animate={animate}
         />
         <ProgressBar
           startTimer={startTimer}
-          initialTime={5}
+          initialTime={10}
           handleTimerFinished={this.handleTimerFinish}
         />
-        {forecastData.length === 0 && <p>No weather forecast data</p>}
-        {forecastData && 
+        {/* {this.state.loading ? <p>No weather forecast data</p> : */}
         <FiveDayForecast 
           data={forecastData}
-          animate={this.state.animate}
-          loading={this.state.loading}
-        />}
+          animate={animate}
+        />
       </div>
     );
   }

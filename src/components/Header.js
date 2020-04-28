@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransition } from 'react-transition-group';
+import { Spring } from 'react-spring/renderprops';
 
 const Header = (props) => (
   <div className="header">
@@ -10,23 +10,25 @@ const Header = (props) => (
           <span className="header__dot brown"></span>
           <span className="header__dot tan"></span>
           <span className="header__dot gold"></span>
-          <CSSTransition
-            in={props.animate}
-            timeout={3000}
-            classNames="fade-in" >
-            <span className="header__time_value">{props.time}</span>
-          </CSSTransition>
+          <Spring
+            from={{ opacity: 0 }}
+            to={{ opacity: 1 }}
+            reset={props.animate}
+            config={{ duration: 1500 }} >
+            {p => <span style={p} className="header__time_value">{props.time}</span>}
+          </Spring>
           <span className="header__dot brown"></span>
           <span className="header__dot tan"></span>
           <span className="header__dot gold"></span>
         </div>
       </div>
-    <CSSTransition
-      in={props.animate}
-      timeout={3000}
-      classNames="fade-in" >
-      <span className="header__temperature">{props.temperature}&deg;</span>
-    </CSSTransition>
+    <Spring
+      from={{ opacity: 0 }}
+      to={{ opacity: 1 }}
+      reset={props.animate}
+      config={{ duration: 1500 }} >
+      {p => <span style={p} className="header__temperature">{props.temperature}&deg;</span>}
+    </Spring>
   </div>
 )
 

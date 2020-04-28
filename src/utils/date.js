@@ -7,5 +7,9 @@ export default {
   getForecastHour: (unixTime) => {
     const dateTime = new Date(unixTime * 1000);
     return dateTime.getUTCHours();
+  },
+  getForecastDate: (unixTime) => {
+    const dateTime = new Date(unixTime * 1000);
+    return dateTime.getUTCDate();
   }
 }
