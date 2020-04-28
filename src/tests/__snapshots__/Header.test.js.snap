@@ -6,7 +6,9 @@ exports[`should render Header correctly 1`] = `
 >
   <span
     className="header__location"
-  />
+  >
+    london
+  </span>
   <div
     className="header__time-container"
   >
@@ -22,9 +24,30 @@ exports[`should render Header correctly 1`] = `
       <span
         className="header__dot gold"
       />
-      <span
-        className="header__time_value"
-      />
+      <Spring
+        config={
+          Object {
+            "duration": 2000,
+          }
+        }
+        force={false}
+        from={
+          Object {
+            "opacity": 0,
+          }
+        }
+        immediate={false}
+        inject={[Function]}
+        native={false}
+        reset={false}
+        to={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        [Function]
+      </Spring>
       <span
         className="header__dot brown"
       />
@@ -36,10 +59,29 @@ exports[`should render Header correctly 1`] = `
       />
     </div>
   </div>
-  <span
-    className="header__temperature"
+  <Spring
+    config={
+      Object {
+        "duration": 2000,
+      }
+    }
+    force={false}
+    from={
+      Object {
+        "opacity": 0,
+      }
+    }
+    immediate={false}
+    inject={[Function]}
+    native={false}
+    reset={false}
+    to={
+      Object {
+        "opacity": 1,
+      }
+    }
   >
-    °
-  </span>
+    [Function]
+  </Spring>
 </div>
 `;

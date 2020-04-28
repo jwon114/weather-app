@@ -1,3 +1,11 @@
 .five-day-forecast {
   padding: 7px;
+  flex: 1;
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 }

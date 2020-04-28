@@ -5,7 +5,10 @@ import FiveDayForecast from '../components/FiveDayForecast';
 
 test('should render Forecast correctly', () => {
   const renderer = new ReactShallowRenderer();
-  renderer.render(<FiveDayForecast data={[]} />);
+  renderer.render(<FiveDayForecast 
+                    data={[]}
+                    animate={false}
+                    loading={false} />);
   
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
@@ -38,7 +41,10 @@ test('should render the the next 5 days', () => {
       weather: [{ description: 'heavy rain', icon: '09d' }]
     }
   ];
-  const { container, getByText } = render(<FiveDayForecast data={testData} />);
+  const { container, getByText } = render(<FiveDayForecast 
+                                            data={testData} 
+                                            animate={false}
+                                            loading={false} />);
   
   expect(container.firstChild.children.length).toBe(5);
   expect(getByText(/mon/i)).toBeInTheDocument();

@@ -5,7 +5,7 @@ import Header from '../components/Header';
 
 test('should render Header correctly', () => {
   const renderer = new ReactShallowRenderer();
-  renderer.render(<Header />);
+  renderer.render(<Header location={'london'} />);
   
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

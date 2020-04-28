@@ -2,18 +2,22 @@
 
 exports[`should render WeatherApp correctly 1`] = `
 <div
-  className="WeatherApp"
+  className="weather-app"
 >
   <Header
+    animate={false}
     location="london"
+    time="13:35 GMT"
   />
   <ProgressBar
     handleTimerFinished={[Function]}
-    initialTime={5}
+    initialTime={10}
     startTimer={false}
   />
   <FiveDayForecast
+    animate={false}
     data={Array []}
+    loading={true}
   />
 </div>
 `;

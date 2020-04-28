@@ -9,7 +9,7 @@ export default class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: undefined,
+      currentTime: this.getCurrentTime(),
       currentLocation: 'london',
       currentTemperature: undefined,
       startTimer: false,
@@ -96,7 +96,7 @@ export default class WeatherApp extends React.Component {
     // }, 1000)
 
     // reset start timer again
-    // this.getWeatherData();
+    this.getWeatherData();
   }
 
   // Todo:
@@ -111,7 +111,7 @@ export default class WeatherApp extends React.Component {
     const { currentTime, currentLocation, currentTemperature, startTimer, forecastData, animate, loading } = this.state;
 
     return (
-      <div className="WeatherApp">
+      <div className="weather-app">
         <Header 
           location={currentLocation}
           time={currentTime}
@@ -123,10 +123,10 @@ export default class WeatherApp extends React.Component {
           initialTime={10}
           handleTimerFinished={this.handleTimerFinish}
         />
-        {/* {this.state.loading ? <p>No weather forecast data</p> : */}
         <FiveDayForecast 
           data={forecastData}
           animate={animate}
+          loading={loading}
         />
       </div>
     );

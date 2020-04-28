@@ -10,8 +10,8 @@
     "node-sass": "^4.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-loader-spinner": "^3.1.14",
     "react-scripts": "3.4.1",
+    "react-spinners": "^0.8.1",
     "react-spring": "^8.0.27",
     "react-test-renderer": "^16.13.1"
   },
@@ -23,6 +23,12 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "react-spring/renderprops": "<rootDir>/node_modules/react-spring/renderprops.cjs",
+      "react-spring": "<rootDir>/node_modules/react-spring/web.cjs"
+    }
   },
   "browserslist": {
     "production": [

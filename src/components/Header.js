@@ -14,7 +14,7 @@ const Header = (props) => (
             from={{ opacity: 0 }}
             to={{ opacity: 1 }}
             reset={props.animate}
-            config={{ duration: 1500 }} >
+            config={{ duration: 2000 }} >
             {p => <span style={p} className="header__time_value">{props.time}</span>}
           </Spring>
           <span className="header__dot brown"></span>
@@ -26,14 +26,14 @@ const Header = (props) => (
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
       reset={props.animate}
-      config={{ duration: 1500 }} >
+      config={{ duration: 2000 }} >
       {p => <span style={p} className="header__temperature">{props.temperature}&deg;</span>}
     </Spring>
   </div>
 )
 
 Header.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.string.isRequired,
   time: PropTypes.string,
   temperature: PropTypes.number
 }
