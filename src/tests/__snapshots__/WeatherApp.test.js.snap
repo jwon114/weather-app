@@ -4,33 +4,102 @@ exports[`should render WeatherApp correctly 1`] = `
 <div
   className="weather-app"
 >
-  <Header
-    animate={false}
-    location="london"
-  />
-  <ProgressBar
-    handleTimerFinished={[Function]}
-    initialTime={60}
-    startTimer={false}
-  />
+  <div
+    className="header"
+  >
+    <span
+      className="header__location"
+    >
+      london
+    </span>
+    <div
+      className="header__time-container"
+    >
+      <div
+        className="header__time"
+      >
+        <span
+          className="header__dot brown"
+        />
+        <span
+          className="header__dot tan"
+        />
+        <span
+          className="header__dot gold"
+        />
+        <span
+          className="header__time_value"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
+        />
+        <span
+          className="header__dot brown"
+        />
+        <span
+          className="header__dot tan"
+        />
+        <span
+          className="header__dot gold"
+        />
+      </div>
+    </div>
+    <span
+      className="header__temperature"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      °
+    </span>
+  </div>
+  <div
+    className="progress-bar"
+  >
+    <span
+      className="progress-bar__text"
+    >
+      Reloading in 60s
+    </span>
+    <div
+      className="progress-bar__container"
+    >
+      <div
+        className="progress-bar__filler"
+        style={
+          Object {
+            "width": "0%",
+          }
+        }
+      />
+    </div>
+  </div>
   <div
     className="forecast-container"
   >
     <div
       className="loader"
     >
-      <Loader
-        color="#000000"
-        css=""
-        loading={true}
-        margin={2}
-        size={20}
-      />
+      <div
+        className="css-0"
+      >
+        <div
+          className="css-1nuv04i"
+        />
+        <div
+          className="css-7rlr8m"
+        />
+        <div
+          className="css-ubljvg"
+        />
+      </div>
     </div>
-    <FiveDayForecast
-      animate={false}
-      data={Array []}
-      loading={true}
+    <div
+      className="five-day-forecast"
     />
   </div>
 </div>

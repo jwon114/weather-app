@@ -1,16 +1,15 @@
 import React from 'react';
-import ReactShallowRenderer from 'react-test-renderer/shallow';
+import { create } from 'react-test-renderer';
 import { render } from '@testing-library/react';
 import FiveDayForecast from '../components/FiveDayForecast';
 
 test('should render Forecast correctly', () => {
-  const renderer = new ReactShallowRenderer();
-  renderer.render(<FiveDayForecast 
-                    data={[]}
-                    animate={false}
-                    loading={false} />);
+  const root = create(<FiveDayForecast 
+                            data={[]}
+                            animate={false}
+                            loading={false} />);
   
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
+  expect(root.toJSON()).toMatchSnapshot();
 });
 
 test('should render the the next 5 days', () => {

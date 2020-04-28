@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../utils/api';
+import DateUtils from '../utils/date';
 import Header from './Header';
 import ProgressBar from './ProgressBar';
 import FiveDayForecast from './FiveDayForecast';
@@ -31,15 +32,8 @@ export default class WeatherApp extends Component {
       API.fetchFiveDayForecast()
       .then(res => {
         const forecastData = this.filterForecastData(res.data.list);
-        this.saveLatestFetch(forecastData, currentTemperature);
-        this.setState(() => ({
-          currentTime: this.getCurrentTime(),
-          currentTemperature: Math.floor(currentTemperature),
-          startTimer: true,
-          forecastData,
-          animate: true,
-          loading: false
-        }));
+        this.setLatestFetchData(forecastData, currentTemperature);
+        this.saveWeatherDataToState(forecastData, currentTemperature);
       })
       .catch(err => {
         console.log(err);
@@ -48,64 +42,60 @@ export default class WeatherApp extends Component {
     .catch(err => {
       console.log(err);
       try {
-        const { weatherData, currentTemperature } = this.getLatestFetch();
-        this.setState(() => ({
-          currentTime: this.getCurrentTime(),
-          currentTemperature: Math.floor(currentTemperature),
-          startTimer: true,
-          forecastData: weatherData,
-          animate: true,
-          loading: false
-        }));
+        const { forecastData, currentTemperature } = this.getLatestFetchData();
+        this.setStateFromWeatherData(forecastData, currentTemperature);
       } catch(e) {
         console.log(e);
       }
     })
   }
 
-  // use localStorage to keep latest copy of forecast data in case API call fails
-  saveLatestFetch = (forecastData, currentTemperature) => {
+  saveWeatherDataToState = (forecastData, currentTemperature) => {
+    this.setState(() => ({
+      currentTime: DateUtils.getCurrentTime(),
+      currentTemperature: Math.floor(currentTemperature),
+      startTimer: true,
+      forecastData,
+      animate: true,
+      loading: false
+    }));
+  }
+
+  // Use localStorage to store latest forecast data in case API call fails
+  setLatestFetchData = (forecastData, currentTemperature) => {
     const forecastDataJSON = JSON.stringify(forecastData);
     const currentTemperatureJSON = JSON.stringify(currentTemperature);
-    localStorage.setItem('weatherData', forecastDataJSON);
+    localStorage.setItem('forecastData', forecastDataJSON);
     localStorage.setItem('currentTemperature', currentTemperatureJSON);
   }
 
-  getLatestFetch = () => {
+  getLatestFetchData = () => {
     const weatherData = JSON.parse(localStorage.getItem('weatherData'));
     const currentTemperature = JSON.parse(localStorage.getItem('currentTemperature'));
     return { weatherData, currentTemperature }
   }
 
   filterForecastData = (data) => {
-    const morningHour = 9;
+    const noonHour = 12;
     const filteredData = data.filter((dataObject) => {
       const forecastHour = new Date(dataObject.dt * 1000).getUTCHours();
-      return forecastHour === morningHour;
+      return forecastHour === noonHour;
     });
 
     const firstDate = new Date(filteredData[0].dt * 1000).getUTCDate();
     const todaysDate = new Date().getUTCDate();
 
-    // For early mornings, the 5th day 09:00 forecast is not covered by the 40 datapoints. Remove the first datapoint and append the latest 5th day forecast.
+    // For early mornings between 00:00 -> 09:00, the 5th day 12:00 forecast is not covered by the 40 datapoints. Remove the first datapoint (current day) and append the latest 5th day forecast.
     if ((firstDate === todaysDate) && (filteredData.length === 5)) {
       filteredData.shift();
       filteredData.push(data[data.length - 1]);
     }
 
-    // Possible overlap with current day and 5th day around 09:00 hour
-    return filteredData.length > 5 ? filteredData.slice(1, 5) : filteredData;
-  }
-
-  getCurrentTime = () => {
-    const timeNow = new Date();
-    const hours = timeNow.getUTCHours();
-    const minutes = timeNow.getUTCMinutes().toString().padStart(2, 0);
-    return `${hours}:${minutes} GMT`;
+    return filteredData;
   }
 
   handleTimerFinish = () => {
-    // stop timer
+    // Stop timer and reset forecast state
     this.setState(() => ({
       forecastData: [],
       startTimer: false,
@@ -113,13 +103,9 @@ export default class WeatherApp extends Component {
       loading: true
     }));
 
-    // reset start timer again
+    // Fetch new weather data
     this.getWeatherData();
   }
-
-  // Todo:
-  // day and temperature alignment
-  // progress bar smooth animation
 
   render() {
     const { currentTime, currentLocation, currentTemperature, startTimer, forecastData, animate, loading } = this.state;

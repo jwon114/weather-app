@@ -2,8 +2,12 @@
 A simple React app that displays the current weather information in London, and weather forecasts for the next 5 days. A 1 minute counter and progress bar displays the time until the weather information is refreshed.
 
 ## Getting Started
+Git clone or download the repository.
 
 ## Prerequisites
+These are required for install:
+- Node
+- yarn
 
 ## Installing
 
@@ -38,7 +42,8 @@ Launches the test runner in the interactive watch mode.
 - [react-spinners] (https://github.com/davidhu2000/react-spinners)
 - [node-sass] (https://github.com/sass/node-sass)
 - [Jest] (https://jestjs.io/)
-- [React-Test-Renderer] (https://reactjs.org/docs/test-renderer.html)
+- [react-test-renderer] (https://reactjs.org/docs/test-renderer.html)
+- [react-testing-library] (https://github.com/testing-library/react-testing-library)
 
 ## Authors
 James Wong

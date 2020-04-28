@@ -24,30 +24,14 @@ exports[`should render Header correctly 1`] = `
       <span
         className="header__dot gold"
       />
-      <Spring
-        config={
-          Object {
-            "duration": 2000,
-          }
-        }
-        force={false}
-        from={
+      <span
+        className="header__time_value"
+        style={
           Object {
             "opacity": 0,
           }
         }
-        immediate={false}
-        inject={[Function]}
-        native={false}
-        reset={false}
-        to={
-          Object {
-            "opacity": 1,
-          }
-        }
-      >
-        [Function]
-      </Spring>
+      />
       <span
         className="header__dot brown"
       />
@@ -59,29 +43,15 @@ exports[`should render Header correctly 1`] = `
       />
     </div>
   </div>
-  <Spring
-    config={
-      Object {
-        "duration": 2000,
-      }
-    }
-    force={false}
-    from={
+  <span
+    className="header__temperature"
+    style={
       Object {
         "opacity": 0,
       }
     }
-    immediate={false}
-    inject={[Function]}
-    native={false}
-    reset={false}
-    to={
-      Object {
-        "opacity": 1,
-      }
-    }
   >
-    [Function]
-  </Spring>
+    °
+  </span>
 </div>
 `;
