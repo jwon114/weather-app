@@ -1,5 +1,5 @@
 # Weather App
-A simple React app that displays the current weather information in London, and weather forecasts for the next 5 days. A 1 minute counter and progress bar displays the time until the weather information is refreshed.
+A simple React app that displays the current weather information in London, and weather forecasts for the next 5 days. A 60 second counter and progress bar displays the time until the weather information is refreshed.
 
 OpenWeather API provided the weather information.
 
@@ -42,14 +42,6 @@ yarn test
 
 Launches the test runner in the interactive watch mode.
 
-### Deployment
-```
-yarn build
-```
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
 ## Implementation
 - Fetched weather information using two OpenWeather API endpoints:
 1. To retrieve the current weather (https://openweathermap.org/current)
@@ -60,16 +52,16 @@ It correctly bundles React in production mode and optimizes the build for the be
 - If fetched data is not saved locally, no data available messages are shown.
 
 ## Assumptions
-- The weather information fetched is always set to London.
-- 5 day forecast only.
-- 1 minute countdown for weather information refresh.
+- The weather location is London.
+- 5 day forecast.
+- 60 second countdown for weather information refresh.
 - OpenWeather API free account only.
 - The time of day for daily weather forecasting was taken at 12:00 when possible.
-- Forecasting starts at current time to the nearest 3 hour interval. During the early mornings (after 00:00 and before 09:00), the 5th day forecast at 12:00 was not available because it is not within the 40 forecasts. Assumed to take the forecast at 09:00 instead.
-- Forecast icons are hosted by OpenWeather and are accessed via code from API.
+- Forecasting starts at current time to the nearest 3 hour interval. During the early mornings (after 00:00 and before 09:00), the 5th day forecast at 12:00 was not available because it is not within the 40 forecasts. Assumed to take the forecast at 09:00 instead to achieve a 5th day forecast.
+- Forecast icons are hosted by OpenWeather.
 
 ## Future Improvements
-- OpenWeather API recently released an endpoint named "One Call API". It provides the current weather and a daily forecast for 7 days. This might be a more appropriate endpoint to use because it requires only one API call and no data manipulation to retrieve daily forecasting.
+- OpenWeather API recently released an endpoint named "One Call API" that provides the current weather and a daily forecast for 7 days. This might be a more appropriate endpoint to use because it requires only one API call and no data manipulation to retrieve daily forecasting.
 - Progress bar animation smoothness.
 - More interesting animations when transitioning to new data.
 
@@ -84,6 +76,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 - [Jest](https://jestjs.io/)
 - [react-test-renderer](https://reactjs.org/docs/test-renderer.html)
 - [react-testing-library](https://github.com/testing-library/react-testing-library)
+- [mockdate](https://github.com/boblauer/MockDate)
 
 ## Authors
 James Wong

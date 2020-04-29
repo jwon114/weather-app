@@ -5,9 +5,9 @@ import FiveDayForecast from '../components/FiveDayForecast';
 
 test('should render Forecast correctly', () => {
   const root = create(<FiveDayForecast 
-                            data={[]}
-                            animate={false}
-                            loading={false} />);
+                        data={[]}
+                        animate={false}
+                        loading={false} />);
   
   expect(root.toJSON()).toMatchSnapshot();
 });
