@@ -6,7 +6,7 @@ export default {
   },
   getCurrentTime:() => {
     const timeNow = new Date();
-    const hours = timeNow.getUTCHours();
+    const hours = timeNow.getUTCHours().toString().padStart(2, 0);
     const minutes = timeNow.getUTCMinutes().toString().padStart(2, 0);
     return `${hours}:${minutes} GMT`;
   }

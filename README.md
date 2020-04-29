@@ -3,6 +3,8 @@ A simple React app that displays the current weather information in London, and 
 
 OpenWeather API provided the weather information.
 
+![alt text](https://github.com/jwon114/weather-app/raw/master/src/docs/weather-app.png "Weather App")
+
 ## Getting Started
 Git clone or download the repository.
 
