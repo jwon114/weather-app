@@ -6,7 +6,7 @@ OpenWeather API provided the weather information.
 ![alt text](https://github.com/jwon114/weather-app/raw/master/src/docs/weather-app.png "Weather App")
 
 ## Getting Started
-Git clone or download the repository.
+Clone or download the repository.
 
 ## Prerequisites
 These are required for install:
@@ -43,15 +43,19 @@ yarn test
 Launches the test runner in the interactive watch mode.
 
 ## Implementation
+Details of project implementation.
+
 - Fetched weather information using two OpenWeather API endpoints:
-1. To retrieve the current weather (https://openweathermap.org/current)
-2. For a 5 day/3 hour weather forecast (https://openweathermap.org/forecast5)
-- Data manipulation was required to retrieve daily forecasting from 5 day/3 hour 40 
-- Increment the refresh counter with a timer and animate progress bar using inline CSS styles.
-- Use Web API's Window.localStorage to store the latest fetched weather information. In the case of a failed fetch, this data will be displayed instead.
-- If fetched data is not saved locally, no data available messages are shown.
+  - To retrieve the current weather (https://openweathermap.org/current)
+  - For a 5 day/3 hour weather forecast (https://openweathermap.org/forecast5)
+- Data manipulation was required to retrieve daily forecasting from 5 day/3 hour interval dataset.
+- Increment the data refresh counter with a timer and animate progress bar using inline CSS styles.
+- Use Web API's localStorage to save the latest fetched weather information. In the case of a failed fetch this data will be displayed instead.
+- If fetching data fails and is not saved in localStorage, no data available messages are shown.
 
 ## Assumptions
+The following assumptions were made when developing this project.
+
 - The weather location is London.
 - 5 day forecast.
 - 60 second countdown for weather information refresh.
@@ -61,9 +65,12 @@ Launches the test runner in the interactive watch mode.
 - Forecast icons are hosted by OpenWeather.
 
 ## Future Improvements
-- OpenWeather API recently released an endpoint named "One Call API" that provides the current weather and a daily forecast for 7 days. This might be a more appropriate endpoint to use because it requires only one API call and no data manipulation to retrieve daily forecasting.
+Ideas to improve the application.
+
+- OpenWeather API recently released an endpoint named "One Call API" that provides the current weather and a daily forecast for 7 days. This could be an appropriate endpoint to use because it is one API call and no daily forecasting data manipulation required.
 - Progress bar animation smoothness.
 - More interesting animations when transitioning to new data.
+- Option to change location.
 
 ## Built With
 - [Open Weather Map API](https://openweathermap.org/api) 
