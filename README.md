@@ -47,10 +47,10 @@ Details of project implementation.
 
 - Fetched weather information using two OpenWeather API endpoints:
   - To retrieve the current weather (https://openweathermap.org/current)
-  - For a 5 day/3 hour weather forecast (https://openweathermap.org/forecast5)
-- Data manipulation was required to retrieve daily forecasting from 5 day/3 hour interval dataset.
-- Increment the data refresh counter with a timer and animate progress bar using inline CSS styles.
-- Use Web API's localStorage to save the latest fetched weather information. In the case of a failed fetch this data will be displayed instead.
+  - For a 5 day/3 hour interval weather forecast (https://openweathermap.org/forecast5)
+- Data manipulation of 5 day/3 hour interval dataset to retrieve daily forecasting.
+- Timer to increment data refresh counter and CSS to animate progress bar.
+- Web API's localStorage to save latest successfully fetched weather information. In the case of a failed fetch this data will be displayed instead.
 - If fetching data fails and is not saved in localStorage, no data available messages are shown.
 
 ## Assumptions
