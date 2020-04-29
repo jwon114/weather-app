@@ -63,6 +63,7 @@ The following assumptions were made when developing this project.
 - The time of day for daily weather forecasting was taken at 12:00 when possible.
 - Forecasting starts at current time to the nearest 3 hour interval. During the early mornings (after 00:00 and before 09:00), the 5th day forecast at 12:00 was not available because it is not within the 40 forecasts. Assumed to take the forecast at 09:00 instead to achieve a 5th day forecast.
 - Forecast icons are hosted by OpenWeather.
+- Temperatures in degrees celsius.
 
 ## Future Improvements
 Ideas to improve the application.
