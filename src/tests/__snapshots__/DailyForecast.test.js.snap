@@ -23,7 +23,7 @@ exports[`should render Forecast correctly 1`] = `
     <img
       alt="weather forecast icon"
       className="daily-forecast__icon-code"
-      src="http://openweathermap.org/img/wn/undefined.png"
+      src="https://openweathermap.org/img/wn/undefined.png"
     />
     <span
       className="daily-forecast__forecast"

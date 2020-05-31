@@ -28,5 +28,5 @@ test('should display the Day, Temperature, Weather Description', () => {
   expect(getByText(/mon/i)).toBeInTheDocument();
   expect(getByText((content, node) => node.textContent === 18 + '°')).toBeInTheDocument();
   expect(getByText(/clear sky/i)).toBeInTheDocument();
-  expect(getByAltText(/weather forecast icon/i).src).toEqual(`http://openweathermap.org/img/wn/${testData[0].weather[0].icon}.png`);
+  expect(getByAltText(/weather forecast icon/i).src).toEqual(`https://openweathermap.org/img/wn/${testData[0].weather[0].icon}.png`);
 });

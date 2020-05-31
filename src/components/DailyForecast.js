@@ -9,7 +9,7 @@ const DailyForecast = (props) => (
       <span className="daily-forecast__temperature">{Math.floor(props.temperature)}&deg;</span>
     </div>
     <div className="daily-forecast__forecast-container">
-      <img className="daily-forecast__icon-code" src={`http://openweathermap.org/img/wn/${props.iconCode}.png`} alt="weather forecast icon" />
+      <img className="daily-forecast__icon-code" src={`https://openweathermap.org/img/wn/${props.iconCode}.png`} alt="weather forecast icon" />
       <span className="daily-forecast__forecast">{props.forecast}</span>
     </div>
   </div>
